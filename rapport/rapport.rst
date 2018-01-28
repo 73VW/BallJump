@@ -22,10 +22,11 @@ MenuActivity
 ^^^^^^^^^^^^
 
 Première activitée à être lancé lors de l'ouverture de l'application. Elle permet juste d'afficher le menu principal qui contient les boutons suivant.
-* PLAY : lancer le jeu
-* STATISTICS : affiche des statistiques sur les scores
-* SHARE	: partage de scores en bluetooth
-* CREDIT : crédit du jeu
+
+- PLAY : lancer le jeu
+- STATISTICS : affiche des statistiques sur les scores
+- SHARE	: partage de scores en bluetooth
+- CREDIT : crédit du jeu
 
 Ensuite en fonction des boutons pressés l'activité va lancer les activités correspondante.
 
@@ -35,7 +36,14 @@ Statistics
 SensorAccelerationActivity
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Cette classe s'occupe d'instancier le panel ainsi que de gèrer les capteurs. Elle utilise l'accéléromètre et le magnétomètre pour pouvoir trouver l'angle de l'appareil. Pour cela la classe implémente SensorEventListener et doit surcharger la fonction onSensorChanged() qui est appelé a chaque changement de valeur des capteurs. Dans cette fonction on récupère la valeur des deux capteurs et on utilise la classe SensorManager pour calculer l'angle de la manière suivante. On passe les résultats des capteurs dans la fonction getRotationMatrix() de la classe SensorManager qui prends comme paramètre 4 tableau, 2 qui viennent des capteurs et 2 tableau dans lesquels seront stocké les résultat. Un de ces tableau correspond a une matrice de rotation qui est passée dans une autre fonction de SensorManager qui se nomme getOrientation() qui elle va retourné un tableau d'angle selon tous les axes. Donc on passe l'angle qui nons intéresse au panel pour qu'il fasse bouger le personnage du jeu.
+Cette classe s'occupe d'instancier le panel ainsi que de gèrer les capteurs. Elle utilise l'accéléromètre et le magnétomètre pour pouvoir trouver l'angle de l'appareil. Pour cela la classe implémente SensorEventListener et doit surcharger la fonction onSensorChanged() qui est appelé a chaque changement de valeur des capteurs. 
+
+Dans cette fonction on récupère la valeur des deux capteurs et on utilise la classe SensorManager pour calculer l'angle de la manière suivante. 
+
+On passe les résultats des capteurs dans la fonction getRotationMatrix() de la classe SensorManager qui prends comme paramètre 4 tableaux, 2 qui viennent des capteurs et 2 tableaux dans lesquels seront stockés les résultats. 
+Un de ces tableaux correspond a une matrice de rotation qui est passée dans une autre fonction de SensorManager qui se nomme getOrientation() qui elle va retourner un tableau d'angles selon tous les axes. 
+
+Donc on passe l'angle qui nons intéresse au panel pour qu'il fasse bouger le personnage du jeu.
 
 GamePanel
 ^^^^^^^^^
@@ -122,7 +130,7 @@ Collisions pas détectées
 
 Il y avait un problème quand le joueur retombait à la vitesse maximale car le joueur pouvait passé de dessus a en dessous d'une plateforme en une frame. Donc quand on vérifie les collisions il n'y en a pas. Pour régler le problème nous avons dû augmenter l'épasseur des plateformes virtuellement. C'est a dire que visuellement elles ne chagent pas mais dans la détection des collisions elles sont plus éapaisse. De cette manière il n'est plus possible de traveré une plateforme en une seul frame.
 
-Panel qui ne se redéssine pas
+Panel qui ne se redessine pas
 """""""""""""""""""""""""""""
 
 Le problème était que lorsqu'on pressait sur PLAY dans le menu principal une page blanche s'affichait parfois pendant plusieurs dizaine de secondes. Après quelques recherches on a trouvé que le problème venait du fait qu'on lockait le canvas pour pouvoir déssiner dessus mais on unlockais pas au bon endroit qui avait pour effet de ne pas redessiner les modifications.
